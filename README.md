@@ -1,16 +1,17 @@
-# Study Timer
+# Study Planner
 
-A simple web-based study timer built using HTML, CSS, and JavaScript.
+A modular web-based study planner built with plain JavaScript.
 
 ## Features
-- Start, pause, and reset timer
-- 25-minute study sessions
-- Session completion tracking
+- Study timer
+- Task management
+- Progress tracking
+- Notification demo
 
 ## Technologies
 - HTML
 - CSS
-- JavaScript
+- JavaScript (ES Modules)
 
 ## Status
-Completed (MVP)
+MVP – actively evolving

@@ -1,47 +1,21 @@
-let studyTime = 25 * 60; // 25 minutes
-let timeLeft = studyTime;
-let timerInterval = null;
-let completedSessions = 0;
+import { initTimer } from "./modules/timer.js";
+import { initTasks } from "./modules/tasks.js";
+import { initProgress } from "./modules/progress.js";
+import { initNotifications } from "./modules/notifications.js";
 
-const timerDisplay = document.getElementById("timer");
-const sessionsDisplay = document.getElementById("sessions");
+// Tabs
+const buttons = document.querySelectorAll("nav button");
+const tabs = document.querySelectorAll(".tab");
 
-function updateDisplay() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerDisplay.textContent =
-    `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
-document.getElementById("startBtn").addEventListener("click", () => {
-  if (timerInterval) return;
-
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    updateDisplay();
-
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-      completedSessions++;
-      sessionsDisplay.textContent = completedSessions;
-      timeLeft = studyTime;
-      updateDisplay();
-      alert("Study session completed!");
-    }
-  }, 1000);
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(tab => tab.classList.add("hidden"));
+    document.getElementById(btn.dataset.tab).classList.remove("hidden");
+  });
 });
 
-document.getElementById("pauseBtn").addEventListener("click", () => {
-  clearInterval(timerInterval);
-  timerInterval = null;
-});
-
-document.getElementById("resetBtn").addEventListener("click", () => {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  timeLeft = studyTime;
-  updateDisplay();
-});
-
-updateDisplay();
+// Initialize modules
+initTimer();
+initTasks();
+initProgress();
+initNotifications();
